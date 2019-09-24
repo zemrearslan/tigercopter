@@ -1,6 +1,7 @@
 from debug import assert_speed, timed_execution
 from moves import Distance, beats2ms, up, right, down, left, flip, FlipDirection, set_speed
 
+
 async def vertical_square(beats: int, dist: Distance = 20):
     buffer_ms = 1000
     time_ms = beats2ms(beats) - buffer_ms
@@ -20,7 +21,9 @@ async def vertical_square(beats: int, dist: Distance = 20):
 async def turn_upside_down(beats: int):
     await flip(FlipDirection.FORWARD)
 
+
 async def vertical_zig_zag(beats: int):
     pass
+
 
 MACARENA = [(vertical_square, 8)]
