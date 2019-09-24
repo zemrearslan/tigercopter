@@ -25,5 +25,4 @@ async def turn_upside_down(beats: int):
 async def vertical_zig_zag(beats: int):
     pass
 
-
 MACARENA = [(vertical_square, 8)]
