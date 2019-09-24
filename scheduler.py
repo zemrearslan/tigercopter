@@ -1,36 +1,25 @@
 import asyncio
+from audioop import max
+from time import time
 
+from macarena_moves import MACARENA
 from tello import tello
-from moves import flip, FlipDirection, forward, back, left, right, wait, takeoff, land
+from moves import flip, FlipDirection, forward, back, left, right, wait, takeoff, land, beats2ms
 
 
-class State:
-    running = True
-    moves = []
-
-
-state = State()
-
-
-def stop():
-    state.running = False
-
-
-def schedule(move):
-    state.moves.insert(0, move)
-
-
-async def scheduler():
+async def scheduler(moves):
+    remaining_moves = list(moves)
     print("START")
-    await wait(1000)
     await takeoff()
+    await asyncio.sleep(5)
 
-    while state.running:
-        if state.moves:
-            next = state.moves.pop()
-            await next()
-
-        await asyncio.sleep(0.5)
+    while remaining_moves:
+        started = time()
+        next_move, beats_budget = remaining_moves.pop()
+        await next_move(beats_budget)
+        ended = time()
+        remaining_time_for_move = max(started + beats2ms(beats_budget)/1000 - ended, 0)
+        await asyncio.sleep(remaining_time_for_move)
 
     print("END")
 
@@ -40,4 +29,4 @@ async def scheduler():
 
 
 if __name__ == '__main__':
-    asyncio.run(scheduler())
+    asyncio.run(scheduler(MACARENA))
