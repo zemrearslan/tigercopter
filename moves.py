@@ -59,6 +59,17 @@ async def back(dist: Distance):
     tello.move_back(dist)
     await wait(guess_move_time(dist))
 
+async def curve(x1:Distance, y1:Distance, z1:Distance, x2:Distance, y2:Distance, z2:Distance, speed:int):
+    assert x1 >= 20 and x1 <= 500
+    assert x2 >= 20 and x2 <= 500
+    assert y1 >= 20 and y1 <= 500
+    assert y2 >= 20 and y2 <= 500
+    assert z1 >= 20 and z1 <= 500
+    assert z2 >= 20 and z2 <= 500
+    assert speed >= 10 and speed <=60
+    tello.go_xyz_speed(x1, y1, z1, x2, y2, z2, speed)
+    await wait(10)
 
 def guess_move_time(dist: Distance) -> Milliseconds:
     return 50 + int(dist * 50)
+
