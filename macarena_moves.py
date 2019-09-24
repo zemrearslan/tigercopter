@@ -1,5 +1,5 @@
 from debug import assert_speed, timed_execution
-from moves import Distance, beats2ms, up, right, down, left, flip, FlipDirection, set_speed, wait, required_speed
+from moves import *
 
 
 async def vertical_square(beats: int, dist: Distance = 20):
@@ -32,6 +32,15 @@ async def turn_upside_down(beats: int):
 
 
 async def vertical_zig_zag(beats: int):
-    pass
+    await go(0, 50, 50, 100)
+    await rotate(1800)
+    await down(50)
+    await rotate(900)
+    await go(50, 50, 0, 100)
+    await rotate(900)
+    await down(50)
+    await rotate(1800)
 
-MACARENA = [(vertical_square, 8)]
+
+
+MACARENA = [(vertical_zig_zag, 8)]

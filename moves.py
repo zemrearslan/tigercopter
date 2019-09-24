@@ -77,6 +77,10 @@ async def curve(x1: Distance, y1: Distance, z1: Distance, x2: Distance, y2: Dist
     await wait(10)
 
 
+async def go(x: int, y: int, z: int, speed: int):
+    tello.go_xyz_speed(x, y, z, speed)
+    await wait(10)
+
 async def rotate(degrees: float):
     if degrees >= 0:
         tello.rotate_clockwise(degrees)
