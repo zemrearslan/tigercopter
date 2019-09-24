@@ -5,6 +5,6 @@ async def vertical_square(dist: Distance, beats: int):
 
 
 async def turn_upside_down(beats: int):
-    await flip(FlipDirection.RIGHT)
+    await flip(FlipDirection.FORWARD)
 
 MACARENA = [(vertical_square, 8)]
