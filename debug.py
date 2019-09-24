@@ -10,4 +10,4 @@ def assert_speed(speed: float):
 async def timed_execution(f) -> Milliseconds:
     start = time()
     await f
-    return (time() - start) / 1000.0
+    return (time() - start) * 1000.0

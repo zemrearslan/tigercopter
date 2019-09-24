@@ -88,5 +88,9 @@ async def set_speed(speed: int):
     tello.set_speed(speed)
 
 
+def required_speed(time_ms: float, distance: Distance) -> int:
+    return int((distance / (time_ms / 1000.0)))
+
+
 def beats2ms(beats: int) -> Milliseconds:
     return (beats / BPM) * 60 * 1000
