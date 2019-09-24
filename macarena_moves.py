@@ -33,14 +33,14 @@ async def turn_upside_down(beats: int):
 
 async def vertical_zig_zag(beats: int):
     await go(0, 50, 50, 100)
-    await rotate(1800)
+    await rotate(180)
     await down(50)
-    await rotate(900)
-    await go(50, 50, 0, 100)
-    await rotate(900)
+    await rotate(90)
+    await go(0, 50, 50, 100)
+    await rotate(90)
     await down(50)
-    await rotate(1800)
+    await rotate(180)
 
 
 
-MACARENA = [(vertical_zig_zag, 8)]
+MACARENA = [(turn_upside_down, 4), (vertical_zig_zag, 8)]

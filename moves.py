@@ -73,13 +73,13 @@ async def curve(x1: Distance, y1: Distance, z1: Distance, x2: Distance, y2: Dist
     assert z1 >= 20 and z1 <= 500
     assert z2 >= 20 and z2 <= 500
     assert speed >= 10 and speed <= 60
-    tello.go_xyz_speed(x1, y1, z1, x2, y2, z2, speed)
+    tello.send_command_without_return('curve %s %s %s %s %s %s %s' % (x1, y1, z1, x2, y2, z2, speed))
     await wait(10)
 
 
 async def go(x: int, y: int, z: int, speed: int):
-    tello.go_xyz_speed(x, y, z, speed)
-    await wait(10)
+    tello.send_command_without_return('go %s %s %s %s' % (x, y, z, speed))
+
 
 async def rotate(degrees: float):
     if degrees >= 0:
