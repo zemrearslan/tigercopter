@@ -11,7 +11,7 @@ async def scheduler(moves):
     remaining_moves = list(moves)
     print("START")
     await takeoff()
-    await asyncio.sleep(5)
+    await asyncio.sleep(1)
 
     while remaining_moves:
         started = time()
