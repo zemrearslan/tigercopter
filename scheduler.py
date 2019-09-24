@@ -4,7 +4,7 @@ from time import time
 
 from macarena_moves import MACARENA
 from tello import tello
-from moves import flip, FlipDirection, forward, back, left, right, wait, takeoff, land, beats2ms
+from moves import flip, FlipDirection, forward, back, left, right, wait, takeoff, land, beats2ms, Milliseconds
 
 
 async def scheduler(moves):
@@ -18,7 +18,7 @@ async def scheduler(moves):
         next_move, beats_budget = remaining_moves.pop()
         await next_move(beats_budget)
         ended = time()
-        remaining_time_for_move = started + beats2ms(beats_budget)/1000 - ended
+        remaining_time_for_move = started + beats2ms(beats_budget) / 1000 - ended
 
         if remaining_time_for_move < 0:
             print("WARNING: Move taken too long. Remaining time: ", remaining_time_for_move)

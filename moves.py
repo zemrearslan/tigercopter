@@ -83,7 +83,7 @@ async def rotate(degrees: float):
         tello.rotate_counter_clockwise(-degrees * 10)
 
 
-async def set_speed(speed: float):
+async def set_speed(speed: int):
     assert speed >= 10 and speed <= 100, f'invalid speed - {speed}'
     tello.set_speed(speed)
 
