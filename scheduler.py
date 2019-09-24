@@ -8,14 +8,12 @@ from moves import flip, FlipDirection, forward, back, left, right, wait, takeoff
 
 
 async def scheduler(moves):
-    remaining_moves = list(moves)
     print("START")
     await takeoff()
     await asyncio.sleep(1)
 
-    while remaining_moves:
+    for next_move, beats_budget in moves:
         started = time()
-        next_move, beats_budget = remaining_moves.pop()
         await next_move(beats_budget)
         ended = time()
         remaining_time_for_move = started + beats2ms(beats_budget) / 1000 - ended

@@ -1,4 +1,5 @@
 import asyncio
+import math
 from enum import Enum
 from tello import tello
 
@@ -99,3 +100,8 @@ def required_speed(time_ms: float, distance: Distance) -> int:
 
 def beats2ms(beats: int) -> Milliseconds:
     return (beats / BPM) * 60 * 1000
+
+
+def seconds2beats(seconds: float) -> int:
+    return math.ceil(BPM * (seconds / 60.0))
+
