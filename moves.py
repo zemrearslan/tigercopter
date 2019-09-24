@@ -15,6 +15,16 @@ class FlipDirection(Enum):
     BACKWARD = 'b'
 
 
+async def takeoff():
+    tello.takeoff()
+    await wait(400)
+
+
+async def land():
+    tello.land()
+    await wait(400)
+
+
 async def flip(direction: FlipDirection):
     tello.flip(direction.value)
     await wait(400)
