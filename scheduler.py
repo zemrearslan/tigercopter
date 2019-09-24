@@ -1,7 +1,7 @@
 import asyncio
 
 from tello import tello
-from moves import flip, FlipDirection, forward, back, left, right, wait
+from moves import flip, FlipDirection, forward, back, left, right, wait, takeoff, land
 
 
 class State:
@@ -22,8 +22,8 @@ def schedule(move):
 
 async def scheduler():
     print("START")
-    tello.takeoff()
-    await wait(500)
+    await wait(1000)
+    await takeoff()
 
     while state.running:
         if state.moves:
@@ -35,8 +35,7 @@ async def scheduler():
     print("END")
 
     await wait(500)
-    tello.land()
-    await wait(500)
+    await land()
     tello.end()
 
 
