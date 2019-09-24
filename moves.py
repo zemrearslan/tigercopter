@@ -5,7 +5,11 @@ from tello import tello
 from djitellopy import Tello
 
 Distance = int
-Milliseconds = int
+Milliseconds = float
+Speed = int
+""" 10 - 100 """
+
+BPM = 103
 
 
 class FlipDirection(Enum):
@@ -82,3 +86,7 @@ async def rotate(degrees: float):
 async def set_speed(speed: float):
     assert speed >= 10 and speed <= 100, f'invalid speed - {speed}'
     tello.set_speed(speed)
+
+
+def beats2ms(beats: int) -> Milliseconds:
+    return (beats / BPM) * 60 * 1000
