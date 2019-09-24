@@ -17,17 +17,14 @@ class FlipDirection(Enum):
 
 async def takeoff():
     tello.takeoff()
-    await wait(400)
 
 
 async def land():
     tello.land()
-    await wait(400)
 
 
 async def flip(direction: FlipDirection):
     tello.flip(direction.value)
-    await wait(400)
 
 
 async def wait(ms: Milliseconds):
@@ -37,38 +34,41 @@ async def wait(ms: Milliseconds):
 async def up(dist: Distance):
     assert dist >= 20 and dist <= 500
     tello.move_up(dist)
-    await wait(guess_move_time(dist))
 
 
 async def down(dist: Distance):
     assert dist >= 20 and dist <= 500
     tello.move_down(dist)
-    await wait(guess_move_time(dist))
 
 
 async def left(dist: Distance):
     assert dist >= 20 and dist <= 500
     tello.move_left(dist)
-    await wait(guess_move_time(dist))
 
 
 async def right(dist: Distance):
     assert dist >= 20 and dist <= 500
     tello.move_right(dist)
-    await wait(guess_move_time(dist))
 
 
 async def forward(dist: Distance):
     assert dist >= 20 and dist <= 500
     tello.move_forward(dist)
-    await wait(guess_move_time(dist))
 
 
 async def back(dist: Distance):
     assert dist >= 20 and dist <= 500
     tello.move_back(dist)
-    await wait(guess_move_time(dist))
 
 
-def guess_move_time(dist: Distance) -> Milliseconds:
-    return 50 + int(dist * 50)
+async def rotate(degrees: float):
+    # expects a number between 1 and 3600
+    if degrees >= 0:
+        tello.rotate_clockwise(degrees * 10)
+    else:
+        tello.rotate_counter_clockwise(-degrees * 10)
+
+
+async def set_speed(speed: float):
+    assert speed >= 10 and speed <= 100, f'invalid speed - {speed}'
+    tello.set_speed(speed)

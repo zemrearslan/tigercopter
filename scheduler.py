@@ -22,6 +22,7 @@ def schedule(move):
 
 async def scheduler():
     print("START")
+    await wait(1000)
     await takeoff()
 
     while state.running:
