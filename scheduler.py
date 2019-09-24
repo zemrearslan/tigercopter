@@ -18,7 +18,7 @@ async def scheduler(moves):
         next_move, beats_budget = remaining_moves.pop()
         await next_move(beats_budget)
         ended = time()
-        remaining_time_for_move = max(started + beats2ms(beats_budget)/1000 - ended, 0)
+        remaining_time_for_move = started + beats2ms(beats_budget)/1000 - ended
 
         if remaining_time_for_move < 0:
             print("WARNING: Move taken too long. Remaining time: ", remaining_time_for_move)
