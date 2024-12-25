@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/zemrearslan/tigercopter/issues"
   },
-  "homepage": "https://github.com/zemrearslan/tigercopter#readme"
+  "homepage": "https://github.com/zemrearslan/tigercopter#readme",
+  "dependencies": {
+    "body-parser": "^1.20.3"
+  }
 }
